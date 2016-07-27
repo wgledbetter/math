@@ -5,6 +5,18 @@
 //  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
+// Version trying to make constexpr.
+
+// Problem with static constexpr in constructor.
+// Made check location and check_scale constexpr
+// Problem in boost::math::isfinite - circumvented with std::isfinite which is OK for built-in.
+// Replaced const by BOOST_CONSTEXPR_OR_CONST
+// Is inline allowed with constexpr? http://en.cppreference.com/w/cpp/language/inline constexpr is implicitly inline,
+// so should be not needed, because implicitly inline but should be OK.  (Clang was wrong?)
+
+// Changed all 'function' literal strings to [] to avoid const char*  BOOST_CONSTEXPR_OR_CONST char function[] = "boost::math::pdf(const normal_distribution<%1%>&, %1%)";
+
+
 #ifndef BOOST_STATS_NORMAL_HPP
 #define BOOST_STATS_NORMAL_HPP
 
@@ -31,32 +43,34 @@ public:
    typedef RealType value_type;
    typedef Policy policy_type;
 
-   normal_distribution(RealType l_mean = 0, RealType sd = 1)
+   BOOST_CONSTEXPR_OR_CONST normal_distribution(RealType l_mean = 0, RealType sd = 1)
       : m_mean(l_mean), m_sd(sd)
    { // Default is a 'standard' normal distribution N01.
-     static const char* function = "boost::math::normal_distribution<%1%>::normal_distribution";
 
-     RealType result;
+      //static // static not allowed in constexpr GCC 6.1.1 ???
+          BOOST_CONSTEXPR_OR_CONST char function[] = "boost::math::normal_distribution<%1%>::normal_distribution";
+
+     RealType result = 0;
      detail::check_scale(function, sd, &result, Policy());
      detail::check_location(function, l_mean, &result, Policy());
    }
 
-   RealType mean()const
+   BOOST_CONSTEXPR_OR_CONST RealType mean()const
    { // alias for location.
       return m_mean;
    }
 
-   RealType standard_deviation()const
+   BOOST_CONSTEXPR_OR_CONST RealType standard_deviation()const
    { // alias for scale.
       return m_sd;
    }
 
    // Synonyms, provided to allow generic use of find_location and find_scale.
-   RealType location()const
+   BOOST_CONSTEXPR_OR_CONST RealType location()const
    { // location.
       return m_mean;
    }
-   RealType scale()const
+   BOOST_CONSTEXPR_OR_CONST RealType scale()const
    { // scale.
       return m_sd;
    }
@@ -77,10 +91,11 @@ typedef normal_distribution<double> normal;
 #endif
 
 template <class RealType, class Policy>
-inline const std::pair<RealType, RealType> range(const normal_distribution<RealType, Policy>& /*dist*/)
+inline
+BOOST_CONSTEXPR_OR_CONST std::pair<RealType, RealType> range(const normal_distribution<RealType, Policy>& /*dist*/)
 { // Range of permissible values for random variable x.
   if (std::numeric_limits<RealType>::has_infinity)
-  { 
+  {
      return std::pair<RealType, RealType>(-std::numeric_limits<RealType>::infinity(), std::numeric_limits<RealType>::infinity()); // - to + infinity.
   }
   else
@@ -91,10 +106,11 @@ inline const std::pair<RealType, RealType> range(const normal_distribution<RealT
 }
 
 template <class RealType, class Policy>
-inline const std::pair<RealType, RealType> support(const normal_distribution<RealType, Policy>& /*dist*/)
+inline
+BOOST_CONSTEXPR_OR_CONST std::pair<RealType, RealType> support(const normal_distribution<RealType, Policy>& /*dist*/)
 { // This is range values for random variable x where cdf rises from 0 to 1, and outside it, the pdf is zero.
   if (std::numeric_limits<RealType>::has_infinity)
-  { 
+  {
      return std::pair<RealType, RealType>(-std::numeric_limits<RealType>::infinity(), std::numeric_limits<RealType>::infinity()); // - to + infinity.
   }
   else
@@ -109,14 +125,17 @@ inline const std::pair<RealType, RealType> support(const normal_distribution<Rea
 #endif
 
 template <class RealType, class Policy>
-inline RealType pdf(const normal_distribution<RealType, Policy>& dist, const RealType& x)
+inline
+BOOST_CONSTEXPR_OR_CONST
+RealType pdf(const normal_distribution<RealType, Policy>& dist, const RealType& x)
 {
    BOOST_MATH_STD_USING  // for ADL of std functions
 
    RealType sd = dist.standard_deviation();
    RealType mean = dist.mean();
 
-   static const char* function = "boost::math::pdf(const normal_distribution<%1%>&, %1%)";
+   //static
+   BOOST_CONSTEXPR_OR_CONST char function[] = "boost::math::pdf(const normal_distribution<%1%>&, %1%)";
 
    RealType result = 0;
    if(false == detail::check_scale(function, sd, &result, Policy()))
@@ -127,7 +146,8 @@ inline RealType pdf(const normal_distribution<RealType, Policy>& dist, const Rea
    {
       return result;
    }
-   if((boost::math::isinf)(x))
+   //if((boost::math::isinf)(x))
+   if (std::isinf(x))
    {
      return 0; // pdf + and - infinity is zero.
    }

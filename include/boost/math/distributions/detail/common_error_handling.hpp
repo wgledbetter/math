@@ -58,41 +58,55 @@ inline bool check_df_gt0_to_inf(const char* function, RealType const& df, RealTy
 
 
 template <class RealType, class Policy>
-inline bool check_scale(
+BOOST_CONSTEXPR_OR_CONST
+bool check_scale(
       const char* function,
       RealType scale,
       RealType* result,
       const Policy& pol)
 {
-   if((scale <= 0) || !(boost::math::isfinite)(scale))
+     if(!std::isfinite(scale)) //   !(boost::math::isfinite)(scale))
+   { // Assume scale == 0 is NOT valid for any distribution.
+      *result = policies::raise_domain_error<RealType>(
+         function,
+         "Scale parameter is %1%, but must be finite!", scale, pol);
+      return false;
+   }
+  if(scale <= 0)
    { // Assume scale == 0 is NOT valid for any distribution.
       *result = policies::raise_domain_error<RealType>(
          function,
          "Scale parameter is %1%, but must be > 0 !", scale, pol);
       return false;
    }
+
+
    return true;
 }
 
 template <class RealType, class Policy>
-inline bool check_location(
+BOOST_CONSTEXPR_OR_CONST
+bool check_location(
       const char* function,
       RealType location,
       RealType* result,
       const Policy& pol)
 {
-   if(!(boost::math::isfinite)(location))
+   if (!std::isfinite(location)) // (!(boost::math::isfinite)(location))
    {
       *result = policies::raise_domain_error<RealType>(
          function,
          "Location parameter is %1%, but must be finite!", location, pol);
       return false;
    }
+
+
    return true;
 }
 
 template <class RealType, class Policy>
-inline bool check_x(
+BOOST_CONSTEXPR_OR_CONST
+bool check_x(
       const char* function,
       RealType x,
       RealType* result,
@@ -102,7 +116,8 @@ inline bool check_x(
    // Some distributions permit x to be infinite, so these must be tested 1st and return,
    // leaving this test to catch any NaNs.
    // See Normal, Logistic, Laplace and Cauchy for example.
-   if(!(boost::math::isfinite)(x))
+   //if(!(boost::math::isfinite)(x))
+   if (!std::isfinite(x))
    {
       *result = policies::raise_domain_error<RealType>(
          function,
