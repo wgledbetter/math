@@ -172,13 +172,16 @@ RealType pdf(const normal_distribution<RealType, Policy>& dist, const RealType& 
 } // pdf
 
 template <class RealType, class Policy>
-inline RealType cdf(const normal_distribution<RealType, Policy>& dist, const RealType& x)
+inline
+BOOST_CONSTEXPR_OR_CONST
+RealType cdf(const normal_distribution<RealType, Policy>& dist, const RealType& x)
 {
    BOOST_MATH_STD_USING  // for ADL of std functions
 
    RealType sd = dist.standard_deviation();
    RealType mean = dist.mean();
-   static const char* function = "boost::math::cdf(const normal_distribution<%1%>&, %1%)";
+   // static
+   BOOST_CONSTEXPR_OR_CONST char function[] = "boost::math::cdf(const normal_distribution<%1%>&, %1%)";
    RealType result = 0;
    if(false == detail::check_scale(function, sd, &result, Policy()))
    {
@@ -188,11 +191,12 @@ inline RealType cdf(const normal_distribution<RealType, Policy>& dist, const Rea
    {
       return result;
    }
-   if((boost::math::isinf)(x))
-   {
+   //if((boost::math::isinf)(x))
+  if((std::isinf)(x))
+  {
      if(x < 0) return 0; // -infinity
      return 1; // + infinity
-   }
+  }
    // These produce MSVC 4127 warnings, so the above used instead.
    //if(std::numeric_limits<RealType>::has_infinity && x == std::numeric_limits<RealType>::infinity())
    //{ // cdf +infinity is unity.

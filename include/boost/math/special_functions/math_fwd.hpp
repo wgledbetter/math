@@ -161,7 +161,7 @@ namespace boost
    template <class RT>// Error function complement.
    typename tools::promote_args<RT>::type erfc(RT z);
    template <class RT, class Policy>// Error function complement.
-   typename tools::promote_args<RT>::type erfc(RT z, const Policy&);
+   typename tools::promote_args<RT>::type BOOST_CONSTEXPR_OR_CONST erfc(RT z, const Policy&);
 
    template <class RT>// Error function inverse.
    typename tools::promote_args<RT>::type erf_inv(RT z);
