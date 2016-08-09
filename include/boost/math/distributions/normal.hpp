@@ -47,7 +47,13 @@ public:
       : m_mean(l_mean), m_sd(sd)
    { // Default is a 'standard' normal distribution N01.
 
-      //static // static not allowed in constexpr GCC 6.1.1 ???
+      //static not allowed in constexpr GCC 6.1.1
+      // Relaxing syntactic constraints on constexpr functions, N3444 Richard Smith
+      // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3444.html
+      // "variable cannot have dynamic initialization. If it did,
+      // the initial value of the variable could depend on the order in which the implementation chose to evaluate constexpr function calls."
+      // http://stackoverflow.com/questions/38619259/literal-string-declared-static-in-constexpr-function
+
           BOOST_CONSTEXPR_OR_CONST char function[] = "boost::math::normal_distribution<%1%>::normal_distribution";
 
      RealType result = 0;
