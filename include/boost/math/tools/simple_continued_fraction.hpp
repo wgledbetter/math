@@ -13,6 +13,7 @@
 #include <limits>
 #include <algorithm>
 #include <stdexcept>
+#include <boost/math/distributions/chi_squared.hpp>
 
 namespace boost::math::tools {
 
@@ -135,22 +136,34 @@ public:
         }
         std::vector<Z> b(b_.begin() + 1, b_.end());
         std::sort(b.begin(), b.end());
+        /*std::cout << "Sorted partial denominators = {";
+        for (size_t i = 0; i < b.size()- 1 ; ++i) {
+            std::cout << b[i] << ", ";
+        }
+        std::cout << b.back() << "}\n";*/
         Z max_b = b.back();
         Real chi_sq = 0;
         Real n = b.size();
         auto it = b.begin();
+        std::cout << std::setprecision(7);
         for (Z k = 1; k <= max_b; ++k) {
-           Real expected_k_count = -log2(Real(1) - Real(1)/(1+k*k))*n;
+           Real expected_k_count = -log2(Real(1) - Real(1)/((1+k)*(1+k)))*n;
            Real actual_k_count = 0;
-           while(it++ == k) {
+           while(*it == k) {
                actual_k_count += 1;
+               ++it;
            }
+           //std::cout << "Expected " << expected_k_count << " " << k << "s, have " << actual_k_count << "\n";
            chi_sq += (expected_k_count - actual_k_count)*(expected_k_count - actual_k_count)/expected_k_count;
         }
         // Now add in all the rest of the expected k from huge partial denominators:
-        // (not yet done)
+        // The contribution to the χ² statistic is
+        // \sum_{k = max_b+1}^{\infty} np_k = -n\sum_{k = max_b+1}^{\infty} \log_{2}(1 - 1/(k+1)^2)
+        // The CDF is 1 - log2((k+2)/(k+1)
         // stubbed for now.
-        return {chi_sq, std::numeric_limits<Real>::quiet_NaN()};
+        auto chi = boost::math::chi_squared_distribution<Real>(n);
+        Real pvalue = 1 - boost::math::cdf(chi, chi_sq);
+        return std::make_pair(chi_sq, pvalue);
     }
     
     template<typename T, typename Z2>
