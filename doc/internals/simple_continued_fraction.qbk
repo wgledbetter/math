@@ -19,6 +19,8 @@
         
         Real khinchin_harmonic_mean() const;
 
+        std::pair<Real, Real> distributed_gauss_kuzmin() const;
+
         template<typename T, typename Z_>
         friend std::ostream& operator<<(std::ostream& out, simple_continued_fraction<T, Z>& scf);
     };
@@ -56,7 +58,12 @@ and Khinchin harmonic mean
 If these approach Khinchin's constant /K/[sub 0] and /K/[sub -1] as the number of partial denominators goes to infinity, then our number is "uninteresting" with respect to the characterization.
 These violations are washed out if too many incorrect partial denominators are included in the expansion.
 
-Note: The convergence of these means to the Khinchin limit is exceedingly slow; we've used 30,000 decimal digits of π and only found two digits of agreement with /K/[sub 0].
-However, clear violations of are obvious, such as the continued fraction expansion of √2, whose Khinchin geometric mean is precisely 2.
+However, the convergence of these means to the Khinchin limit is exceedingly slow; we've used 30,000 decimal digits of π and only found two digits of agreement with /K/[sub 0].
+Clear violations of are obvious, such as the continued fraction expansion of √2, whose Khinchin geometric mean is precisely 2.
+But there is a better method:
+As explained in [@https://www.ams.org/journals/mcom/1980-34-149/S0025-5718-1980-0551307-4/S0025-5718-1980-0551307-4.pdf Brent and McMillan],
+we can do a χ² test on the partial denominators to determine deviation from the Gauss-Kuzmin distribution, which is a better way of thinking about the problem than numerically evaluating the empirical Khinchin constant.
+
+
 
 [endsect]

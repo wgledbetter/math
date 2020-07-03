@@ -11,8 +11,8 @@
 #include <iomanip>
 #include <cmath>
 #include <limits>
+#include <algorithm>
 #include <stdexcept>
-#include <boost/core/demangle.hpp>
 
 namespace boost::math::tools {
 
@@ -61,7 +61,7 @@ public:
           D = 1/D;
           f *= (C*D);
        }
-       // Deal with non-uniqueness of continued fractions: [a0; a1, ..., an, 1] = a0; a1, ..., an + 1].
+       // Deal with non-uniqueness of continued fractions: [a0; a1, ..., an, 1] = [a0; a1, ..., an + 1].
        // The shorter representation is considered the canonical representation,
        // so if we compute a non-canonical representation, change it to canonical:
        if (b_.size() > 2 && b_.back() == 1) {
@@ -74,7 +74,7 @@ public:
          if (b_[i] <= 0) {
             std::ostringstream oss;
             oss << "Found a negative partial denominator: b[" << i << "] = " << b_[i] << "."
-                << " This means the integer type '" << boost::core::demangle(typeid(Z).name())
+                << " This means the integer type '" << typeid(Z).name()
                 << "' has overflowed and you need to use a wider type,"
                 << " or there is a bug.";
             throw std::overflow_error(oss.str());
@@ -121,6 +121,37 @@ public:
     const std::vector<Z>& partial_denominators() const {
       return b_;
     }
+
+    // This idea comes from:
+    // https://www.ams.org/journals/mcom/1980-34-149/S0025-5718-1980-0551307-4/S0025-5718-1980-0551307-4.pdf
+    // Some New Algorithms for High-Precision Computation of Euler's Constant,
+    // by Richard P. Brent and Edwin M. McMillan.
+    // If the partial denominators are "random", then they are distributed Gauss-Kuzmin.
+    // So do a χ² test on the partial denominators.
+    std::pair<Real, Real> distributed_gauss_kuzmin() const {
+        using std::log2;
+        if (b_.size() == 1) {
+            return {std::numeric_limits<Real>::quiet_NaN(), std::numeric_limits<Real>::quiet_NaN()};
+        }
+        std::vector<Z> b(b_.begin() + 1, b_.end());
+        std::sort(b.begin(), b.end());
+        Z max_b = b.back();
+        Real chi_sq = 0;
+        Real n = b.size();
+        auto it = b.begin();
+        for (Z k = 1; k <= max_b; ++k) {
+           Real expected_k_count = -log2(Real(1) - Real(1)/(1+k*k))*n;
+           Real actual_k_count = 0;
+           while(it++ == k) {
+               actual_k_count += 1;
+           }
+           chi_sq += (expected_k_count - actual_k_count)*(expected_k_count - actual_k_count)/expected_k_count;
+        }
+        // Now add in all the rest of the expected k from huge partial denominators:
+        // (not yet done)
+        // stubbed for now.
+        return {chi_sq, std::numeric_limits<Real>::quiet_NaN()};
+    }
     
     template<typename T, typename Z2>
     friend std::ostream& operator<<(std::ostream& out, simple_continued_fraction<T, Z2>& scf);
@@ -150,7 +181,7 @@ std::ostream& operator<<(std::ostream& out, simple_continued_fraction<Real, Z2>&
       }
       out << scf.b_.back();
    }
-   out << "]\n";
+   out << "]";
    return out;
 }
 
