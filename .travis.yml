@@ -16,6 +16,7 @@ branches:
   only:
     - master
     - develop
+    - original
 
 env:
   matrix:
@@ -27,101 +28,101 @@ matrix:
     - env: BOGUS_JOB=true
 
   include:
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
     - os: linux
       env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=quadrature
@@ -183,221 +184,221 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=gnu++14 TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=gnu++14 TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++03 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++11 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++14 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=gnu++14 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=gnu++14 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=gnu++14 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=gnu++14 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-6
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-6 CXXSTD=c++1z TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-6
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - g++-5
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-5
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - g++-5
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-5
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=misc
-      addons:
-        apt:
-          packages:
-            - g++-5
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=misc
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-5
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
     - os: linux
       env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=quadrature
@@ -411,74 +412,74 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-5
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-5
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-5
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-5
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-5
-            - libgmp-dev
-            - libmpfr-dev
-            - libfftw3-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   env: TOOLSET=gcc COMPILER=g++-5 CXXSTD=c++14 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-5
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #         - libfftw3-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=misc
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=misc
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
     - os: linux
       dist: trusty
@@ -491,73 +492,73 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-8
-            - libgmp-dev
-            - libmpfr-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=c++14 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=misc
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=misc
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
     - os: linux
       dist: trusty
@@ -570,62 +571,62 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-8
-            - libgmp-dev
-            - libmpfr-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++03 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
     - os: linux
       dist: trusty
@@ -638,73 +639,73 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=float128_tests
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=float128_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - g++-8
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      dist: trusty
-      compiler: g++-8
-      env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - g++-8
-            - libgmp-dev
-            - libmpfr-dev
-          sources:
-            - ubuntu-toolchain-r-test
+    # - os: linux
+    #   dist: trusty
+    #   compiler: g++-8
+    #   env: TOOLSET=gcc COMPILER=g++-8 CXXSTD=gnu++17 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - g++-8
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
 
-    - os: linux
-      compiler: clang++-6.0
-      env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=special_fun
-      addons:
-        apt:
-          packages:
-            - clang-6.0
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-xenial-6.0
+    # - os: linux
+    #   compiler: clang++-6.0
+    #   env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=special_fun
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - clang-6.0
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #         - llvm-toolchain-xenial-6.0
 
-    - os: linux
-      compiler: clang++-6.0
-      env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=distribution_tests
-      addons:
-        apt:
-          packages:
-            - clang-6.0
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-xenial-6.0
+    # - os: linux
+    #   compiler: clang++-6.0
+    #   env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=distribution_tests
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - clang-6.0
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #         - llvm-toolchain-xenial-6.0
 
-    - os: linux
-      compiler: clang++-6.0
-      env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=misc
-      addons:
-        apt:
-          packages:
-            - clang-6.0
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-xenial-6.0
+    # - os: linux
+    #   compiler: clang++-6.0
+    #   env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=misc
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - clang-6.0
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #         - llvm-toolchain-xenial-6.0
 
     - os: linux
       compiler: clang++-6.0
@@ -717,53 +718,53 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-xenial-6.0
 
-    - os: linux
-      compiler: clang++-6.0
-      env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=../example//examples
-      addons:
-        apt:
-          packages:
-            - clang-6.0
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-xenial-6.0
+    # - os: linux
+    #   compiler: clang++-6.0
+    #   env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=../example//examples
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - clang-6.0
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #         - llvm-toolchain-xenial-6.0
 
-    - os: linux
-      compiler: clang++-6.0
-      env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=../tools
-      addons:
-        apt:
-          packages:
-            - clang-6.0
-            - libgmp-dev
-            - libmpfr-dev
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-xenial-6.0
+    # - os: linux
+    #   compiler: clang++-6.0
+    #   env: TOOLSET=clang COMPILER=clang++-6.0 CXXSTD=c++11 TEST_SUITE=../tools
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - clang-6.0
+    #         - libgmp-dev
+    #         - libmpfr-dev
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #         - llvm-toolchain-xenial-6.0
 
-    - os: osx
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=special_fun
-      osx_image: xcode11
+    # - os: osx
+    #   env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=special_fun
+    #   osx_image: xcode11
 
-    - os: osx
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=distribution_tests
-      osx_image: xcode11
+    # - os: osx
+    #   env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=distribution_tests
+    #   osx_image: xcode11
 
-    - os: osx
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=misc
-      osx_image: xcode11
+    # - os: osx
+    #   env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=misc
+    #   osx_image: xcode11
 
     - os: osx
       env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=quadrature
       osx_image: xcode11
 
-    - os: osx
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=float128_tests
-      osx_image: xcode11
+    # - os: osx
+    #   env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=float128_tests
+    #   osx_image: xcode11
 
-    - os: osx
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=../example//examples
-      osx_image: xcode11
+    # - os: osx
+    #   env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++14 TEST_SUITE=../example//examples
+    #   osx_image: xcode11
 
 
 install:
